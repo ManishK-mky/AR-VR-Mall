@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alvinwan/aframe-low-poly@0.0.2/dist/aframe-low-poly.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/7d6068cbaa.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Checkout Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript">
+      AFRAME.registerComponent("drag-rotate-component", {
+        schema: { speed: { default: 1 } },
+        init: function () {
+          this.ifMouseDown = false;
+          this.x_cord = 0;
+          this.y_cord = 0;
+          document.addEventListener(
+            "mousedown",
+            this.OnDocumentMouseDown.bind(this)
+          );
+          document.addEventListener(
+            "mouseup",
+            this.OnDocumentMouseUp.bind(this)
+          );
+          document.addEventListener(
+            "mousemove",
+            this.OnDocumentMouseMove.bind(this)
+          );
+        },
+        OnDocumentMouseDown: function (event) {
+          this.ifMouseDown = true;
+          this.x_cord = event.clientX;
+          this.y_cord = event.clientY;
+        },
+        OnDocumentMouseUp: function () {
+          this.ifMouseDown = false;
+        },
+        OnDocumentMouseMove: function (event) {
+          if (this.ifMouseDown) {
+            var temp_x = event.clientX - this.x_cord;
+            var temp_y = event.clientY - this.y_cord;
+            if (Math.abs(temp_y) < Math.abs(temp_x)) {
+              this.el.object3D.rotateY((temp_x * this.data.speed) / 250);
+            } else {
+              this.el.object3D.rotateX((temp_y * this.data.speed) / 250);
+            }
+            this.x_cord = event.clientX;
+            this.y_cord = event.clientY;
+          }
+        },
+      });
+
+      window.addEventListener('scroll', function() {
+        const navs = document.querySelector('.navs');
+        if (window.scrollY > 10) {
+          navs.classList.add('scrolling');
+        } else {
+          navs.classList.remove('scrolling');
+        }
+      });
+    </script>
+    <style>
+      .navs {
+        background-color: #2c2c2c;
+        padding: 10px 40px;
+        border-radius: 40px;
+        width: 800px;
+        margin: 0 auto;
+        transition: width 0.3s ease;
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+      }
+
+      .navs.scrolling {
+        width: calc(100% - 0px);
+        padding: 10px 20px;
+        left: 0;
+        transform: none;
+        border-radius: 0px;
+        top: 0;
+      }
+
+      .container1 {
+        margin-top: 70px;
+      }
+
+      .naved {
+        background-color: #2c2c2c;
+        border-radius: 20px;
+      }
+
+      .labels {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+      }
+
+      .inputs {
+        width: 100%;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid #000;
+      }
+
+      .cancelbtn {
+        border-radius: 15px;
+        padding: 6px 16px;
+        border: 2px solid red;
+        color: red;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .cancelbtn:hover {
+        background-color: red;
+        color: white;
+      }
+
+      .proceedbtn:hover {
+        background-color: green;
+        color: white;
+      }
+
+      .proceedbtn {
+        text-decoration: none !important;
+        border-radius: 15px;
+        padding: 6px 16px;
+        border: 2px solid green;
+        color: green;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .proceed {
+        text-decoration: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="navs">
+        <div class="container">
+          <div class="text-white fw-bold">
+            <h5>BuyShop</h5>
+          </div>
+        </div>
+        <a-scene embedded>
+          <a-sky color="#F4F9F9" opacity="0.7"></a-sky>
+          <a-light
+            type="directional"
+            castShadow="true"
+            intensity="0.7"
+            color="#D0EAF9;"
+            position="5 3 1"
+          ></a-light>
+          <a-light intensity="1.5" type="ambient" color="#ccccff"></a-light>
+          <a-camera position="0 3 4.5" look-controls="enabled:false">
+            <a-cursor></a-cursor>
+          </a-camera>
+          <a-entity
+            id="model"
+            rotation="0 0 0"
+            scale="2.8 2.8 2.8"
+            position="0 0.5 -1.5"
+            drag-rotate-component
+          ></a-entity>
+        </a-scene>
+      </div>
+    </div>
+
+    <div class="container container1">
+      <div class="row">
+        <!-- Personal Details section -->
+        <div class="col-7 m-2 p-2">
+          <form action="/payment" method="post">
+            <div class="box">
+              <div class="naved p-2 mb-2">
+                <div class="container">
+                  <div class="text-white">
+                    <h5>Personal Details</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="form-row pl-2 pr-2">
+                  <div class="col">
+                    <p class="labels">First Name</p>
+                    <input
+                      type="text"
+                      class="inputs"
+                      name="firstName"
+                      required
+                    />
+                  </div>
+                  <div class="col">
+                    <p class="labels">Last Name</p>
+                    <input type="text" class="inputs" name="lastName" required />
+                  </div>
+                </div>
+                <div class="form-row mt-2 pl-2 pr-2">
+                  <div class="col">
+                    <p class="labels">Email</p>
+                    <input type="email" class="inputs" name="email" required />
+                  </div>
+                </div>
+                <div class="form-row mt-2 pl-2 pr-2 pb-3">
+                  <div class="col">
+                    <p class="labels">Mobile Number</p>
+                    <input type="tel" class="inputs" name="mobileNumber" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delivery Details Section -->
+            <div class="mt-4 box">
+              <div class="naved p-2 mb-2">
+                <div class="container">
+                  <div class="text-white">
+                    <h5>Delivery Address</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="form-row pl-2 pr-2">
+                  <div class="col">
+                    <p class="labels">Address Line 1</p>
+                    <input
+                      type="text"
+                      class="inputs"
+                      name="addressLine1"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row mt-2 pl-2 pr-2">
+                  <div class="col">
+                    <p class="labels">Address Line 2</p>
+                    <input
+                      type="text"
+                      class="inputs"
+                      name="addressLine2"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row mt-2 pl-2 pr-2">
+                  <div class="col">
+                    <p class="labels">City</p>
+                    <input type="text" class="inputs" name="city" required />
+                  </div>
+                  <div class="col">
+                    <p class="labels">State</p>
+                    <input type="text" class="inputs" name="state" required />
+                  </div>
+                </div>
+                <div class="form-row mt-2 pl-2 pr-2 pb-3">
+                  <div class="col">
+                    <p class="labels">Country</p>
+                    <input type="text" class="inputs" name="country" required />
+                  </div>
+                  <div class="col">
+                    <p class="labels">Zip Code</p>
+                    <input type="text" class="inputs" name="zipCode" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+            <!-- Submit and Cancel Buttons -->
+            <div class="form-row mt-4">
+              <div class="col">
+                <button type="submit" class="proceedbtn">Proceed to Payment</button>
+              </div>
+              <div class="col text-right">
+                <button type="button" class="cancelbtn">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Order Summary Section -->
+        <div class="col-4 m-2 p-2">
+          <div class="box">
+            <div class="naved p-2 mb-2">
+              <div class="container">
+                <div class="text-white">
+                  <h5>Order Summary</h5>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <!-- Order summary content here -->
+            </div>
+          </div>
+          <div>
+            <div class="container">
+              <b class="text-secondary">Item Name</b>
+              <p id="item-name">Demo-item</p>
+
+              <b class="text-secondary">Description</b>
+              <p id="item-desc">Desc</p>
+
+              <b class="text-secondary">Rating</b>
+              <p id="item-rating">4/5</p>
+
+              <b class="text-secondary">Price Details</b>
+              <div class="row mb-0 pr-3">
+                <div class="col-6">
+                  <p>Price:</p>
+                </div>
+                <div class="col-6 text-right">
+                  <b>&#8377;</b><b id="price"> 1000</b>
+                </div>
+              </div>
+
+              <div class="row mt-0 mb-0 pr-3">
+                <div class="col-6">
+                  <p>Delivery Charges:</p>
+                </div>
+                <div class="col-6 text-right">
+                  <b>&#8377;</b><b id="delivery-price"> 0</b>
+                </div>
+              </div>
+              <hr />
+              <div class="row mt-0 mb-0 pr-3 pb-3">
+                <div class="col-6">
+                  <b> Total Payable: </b>
+                </div>
+                <div class="col-6 text-right">
+                  <b>&#8377;</b><b id="total"> 1000</b>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div><br><br>
+            <h4><b>Scan the QR to see the AR model.</b></h4>
+            <img src="./p1.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
+  <script>
+     
+      //dynamic rendering of product details
+
+      var params = getUrlParams();
+      document.getElementById("item-name").innerHTML = params.itemname;
+      document.getElementById("item-rating").innerHTML = params.itemrating;
+      document.getElementById("price").innerHTML = params.price;
+      document.getElementById("total").innerHTML = params.price;
+      document.getElementById("qr").src = params.qr;
+      document.getElementById("item-desc").innerHTML = params.description;
+      var me = document.getElementById("model"); //
+      model.setAttribute("scale", params.scale);
+      document
+        .getElementById("model")
+        .setAttribute("gltf-model", params.product);
+      function getUrlParams() {
+        var match;
+        var pl = /\+/g; // Regex for replacing addition symbol with a space
+        var search = /([^&=]+)=?([^&]*)/g;
+        var decode = function (s) {
+          return decodeURIComponent(s.replace(pl, " "));
+        };
+        var query = window.location.search.substring(1);
+        var urlParams = {};
+
+        match = search.exec(query);
+        while (match) {
+          urlParams[decode(match[1])] = decode(match[2]);
+          match = search.exec(query);
+        }
+        return urlParams;
+      }
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    >
+  </script>
+</html>

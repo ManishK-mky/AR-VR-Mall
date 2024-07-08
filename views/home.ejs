@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<style>
+
+    *{
+        margin: 0;
+        font-family: 'Poppins';
+    }
+
+   .main{
+    width: 100%;
+    height: 100%;
+   }
+
+  
+
+   /* ---------hero page---------- */
+
+   .hero-page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: rgb(2, 2, 2);
+    justify-content: space-around;
+   }
+
+   .left-part{
+    width: 48%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   }
+
+   .content{
+    margin:0px 12px 0px 12px;
+    /* background-color: aqua; */
+    letter-spacing: 1px;
+   }
+
+   .info{
+    width: 60%;
+    padding-bottom: 18px;
+    color: white;
+   }
+
+   .welcome{
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+   }
+
+   .main-heading{
+    font-size: 45px;
+    font-weight: 900;
+    color: white;
+   }
+
+   .hero-page .left-part .content .shop-btn{
+    text-decoration: none;
+    background-color: #e91e63;
+    padding: 5px 21px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 15px;
+    cursor: pointer;
+   }
+
+   .right-part {
+    position: relative;
+    width: 48%;
+    height: 100%; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+    .vid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 700px;
+    overflow: hidden;
+    object-fit: cover; 
+    z-index: 1; 
+}
+
+   /* -------------Services Part---------- */
+
+   .servicecontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+
+    /* ------------------------------- */
+
+    .avtr-head{
+        font-size: 45px;
+        font-weight: 700;
+        padding-left: 36px;
+        color: rgb(92, 92, 92);
+        margin: 30px;
+        text-align: center;
+    }
+
+
+
+    .avatarsection{
+        display: flex;
+        align-items: center;
+    }
+
+    .avatarsection model-viewer{
+        /* width: 100px; */
+        height: 600px;
+        position: relative;
+        /* left: 150px; */
+    }
+
+ .right{
+        background-color: #24262b;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right-side-content{
+        /* background-color: aqua; */
+        display: flex;
+        flex-direction: column;
+        margin-left: 21px;
+        color: rgb(255, 255, 255);
+        margin-right: 21px;
+    }
+
+    .right-side-content p{
+        font-weight: 200;
+        margin-bottom: 30px;
+        margin-top: 15px;
+        font-size: 15px;
+        color: rgb(255, 255, 255);
+    }
+
+    .right-side-content button{
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 12px;
+        border: none;
+        height: 42px;
+        background-color: rgb(62, 130, 255);
+        color: white;
+    }
+
+    .right-side-content .link p{
+        padding-top: 45px;
+        /* background-color: aqua; */
+        color: rgb(255, 250, 250);
+        font-weight: 300;
+        cursor: pointer;
+    }
+
+    .right-side-content .link p span{
+        padding-top: 45px;
+        /* background-color: aqua; */
+        color: rgb(255, 255, 255);
+        font-weight: 600;
+    }
+
+
+    /* ------------------- */
+    .right-side-content button,.displayiframebtn{
+    border: none !important;
+    background-color: green;
+    color: #FFF;
+    border-radius: 10px;
+    width: 100%;
+    padding: 7px 0px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+.displayiframebtn{
+    background-color: rgb(114, 59, 180) !important; 
+    width: 300px;  
+}
+
+.avatarcreator{
+    width: 100%;
+    display: flex;
+    /* background-color: aquamarine; */
+    justify-content: center;
+    /* align-items: center; */
+    margin-bottom: 30px;
+    /* margin-top: 30px; */
+}
+
+.avatarcreator .left-a{
+    width: 99%;
+    height: 100%;
+}
+
+.avatarcreator .right-a{
+    width:25%;
+    height: 100%;
+    /* background-color: red; */
+}
+
+.avatarcreator iframe{
+    width: 100%;
+    height: 90vh;
+    display: none;
+    border-radius: 12px;
+}
+
+.avatarcreator .right-a img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.avatararea{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+
+/* newnavbar css */
+
+.navbar {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px;
+    background-color: #f1f3f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 25px;
+    z-index: 1000;
+    border-radius: 40px;
+    transition: all 0.5s ease;
+    box-sizing: border-box;
+}
+
+.navbar.scrolled {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 15px;
+    border-radius: 0;
+}
+
+.logosection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoimg {
+    height: 45px;
+    width: 55px;
+}
+
+.logoname {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 25px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.navlinks {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loginbtn {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.navbar.scrolled .navlinks, .navbar.scrolled .loginbtn {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.navlinks, .loginbtn {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.navlinks::after, .loginbtn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.8s ease;
+    box-sizing: border-box;
+}
+
+.navlinks:hover::after, .loginbtn:hover::after {
+    background-color: #e91e63;
+}
+
+.navlinks::before, .loginbtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #e91e63;
+    transition: width 0.8s ease;
+    box-sizing: border-box;
+}
+
+.navlinks:hover::before, .loginbtn:hover::before {
+    width: 100%;
+}
+
+/* Hamburger styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .navbar-links, .navbar-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #f1f3f9;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-links a, .navbar-right form {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+    .hero-page{
+        flex-direction: column;
+    }
+    .vid,.right-part,.left-part,.info{
+        width: 100%;
+    }
+    .left-part{
+        text-align: center;
+    }
+    .secondavater{
+        display: none;
+    }
+}
+
+/* footer css */
+
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+.products{
+        margin-top: 18px;
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        
+        align-items: center;
+    }
+
+    .item{
+        width:23% !important ;
+        height: 450px;
+        padding:0px 6px;
+    }
+
+    .item img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+
+
+</style>
+<body>
+    <div class="main">
+    
+        <div class="navbar">
+            <div class="logosection">
+                <div><img src="/logo.png" alt="logo" class="logoimg"></div>
+                <div class="logoname">BuyShop</div>
+            </div>
+
+            <!-- humberger button -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="navbar-links">
+                <a href="/" class="navlinks">Home</a>
+                <a href="about" class="navlinks">About Us</a>
+                <a href="contact" class="navlinks">Contact Us</a>
+            </div>
+            <div class="navbar-right">
+                <form action="/signup" method="GET">
+                    <button type="submit" class="loginbtn">Login</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- hero section -->
+
+        <div class="hero-page">
+            <div class="left-part">
+                <div class="content">
+                    <p class="info">"Shop your desires, find your delights, and indulge in what ignites."</p>
+                    <p class="welcome">Welcome to</p>
+                    <p class="main-heading">Virtual Shopping</p>
+                    <form action="/signup" method="GET">
+                        <button class="shop-btn">SHOP NOW</button>
+                    </form>
+                </div>
+            </div>
+            <div class="right-part">
+                <video class="vid" autoplay loop controls muted>
+                    <source src="/images/hero-vid.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>                      
+        </div>
+
+
+        <!-- services section -->
+
+        <div class="avtr-head">
+            <p>Services</p>
+        </div>
+
+        <div class="products">
+            <div class="item">
+                <img src="https://i.pinimg.com/564x/2a/c7/c1/2ac7c198972d9190c8fe2632a8fd8a88.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/564x/65/af/96/65af9621877fc7d0e50351d506648cf3.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/564x/73/05/bb/7305bb14576e2aeb03428e186d21fd1d.jpg" alt="">
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/564x/e1/69/01/e169014ff6ce2b885a3137b0ef04dff7.jpg" alt="">
+            </div>
+        </div>
+
+      
+        <!-- avatar section -->
+
+        <div class="avtr-head">
+            <p>Avatar Section</p>
+        </div>
+       
+
+       <div class="avatararea">
+
+            <div class="avatarsection">
+                <model-viewer src="scene.gltf" alt="A 3D model of a men" shadow-intensity="1" camera-controls auto-rotate>
+                </model-viewer>
+            </div>
+
+            <div class="avatarsection secondavater">
+                <model-viewer src="female_avatar/scene.gltf" alt="A 3D model of a women" shadow-intensity="1" camera-controls auto-rotate>
+                </model-viewer>
+            </div>
+
+       </div>
+
+
+
+        <div class="right">
+            <div class="right-side-content">
+                <h1>Create your own Avatar</h1>
+                <p>Click on Explore Now to create and <br>customize your own Avatar</p>
+                <button id="displayButton" class="displayiframebtn" onClick="displayIframe()">Open Avatar Creator</button>
+                <div class="link">
+                    <p><span>Must visit :-</span> <a href="https://readyplayer.me/avatar?id=65f3230afc079270873972ea">https://readyplayer.me/avatar?id=65f3230afc079270873972ea</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="avatarcreator">
+            <div class="left-a"><iframe id="iframe" class="iframe-content" allow="camera *; microphone *"></iframe></div>
+            <!-- <div class="right-a" id="iframe" class="iframe-content">
+                <img src="/daniel-clarke-style-71bc-removebg-preview.png" alt="">
+            </div> -->
+        </div>
+
+        <!-- footer section -->
+
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4>company</h4>
+                        <ul>
+                            <li><a href="#">about us</a></li>
+                            <li><a href="#">our services</a></li>
+                            <li><a href="#">privacy policy</a></li>
+                            <li><a href="#">affiliate program</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>get help</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">shipping</a></li>
+                            <li><a href="#">returns</a></li>
+                            <li><a href="#">order status</a></li>
+                            <li><a href="#">payment options</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>online shop</h4>
+                        <ul>
+                            <li><a href="#">watch</a></li>
+                            <li><a href="#">bag</a></li>
+                            <li><a href="#">shoes</a></li>
+                            <li><a href="#">dress</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>follow us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </footer>
+
+    </div>
+    
+
+</body>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+<script>
+
+function toggleMenu() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('active');
+}
+
+
+    function displayIframe() {
+        let iframe = document.getElementById('iframe');
+        let button = document.getElementById('displayButton');
+        if (iframe.style.display === 'block') {
+            iframe.style.display = 'none';
+            button.textContent = 'Open Avatar Creator';
+        } else {
+            iframe.style.display = 'block';
+            button.textContent = 'Close Avatar Creator';
+        }
+    }
+
+  
+// -----------------------------------------
+// ready playr me api code
+
+const subdomain = "demo";
+const frame = document.getElementById("iframe");
+
+frame.src = `https://${subdomain}.readyplayer.me/avatar?frameApi`;
+
+window.addEventListener("message", subscribe);
+document.addEventListener("message", subscribe);
+
+function subscribe(event) {
+  const json = parse(event);
+
+  if (json?.source !== "readyplayerme") {
+    return;
+  }
+
+  // Susbribe to all events sent from Ready Player Me once frame is ready
+  if (json.eventName === "v1.frame.ready") {
+    frame.contentWindow.postMessage(
+      JSON.stringify({
+        target: "readyplayerme",
+        type: "subscribe",
+        eventName: "v1.**",
+      }),
+      "*"
+    );
+  }
+
+  // Get avatar GLB URL
+  if (json.eventName === "v1.avatar.exported") {
+    console.log(`Avatar URL: ${json.data.url}`);
+    document.getElementById("avatar").value = `${json.data.url}`;
+    document.getElementById("iframe").hidden = true;
+  }
+
+  // Get user id
+  if (json.eventName === "v1.user.set") {
+    console.log(
+      `User with id ${json.data.id} set: ${JSON.stringify(json)}`
+    );
+  }
+}
+
+function parse(event) {
+  try {
+    return JSON.parse(event.data);
+  } catch (error) {
+    return null;
+  }
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var avatarForm = document.getElementById('avatarform');
+  var Wrapper = document.getElementById('wrapper');
+
+  function handleIntersection(entries, observer) {
+      entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+               if (entry.target === avatarForm) {
+                  avatarForm.style.transform = 'translateX(0)'; // Move to the original position
+              }else if (entry.target === Wrapper) {
+                Wrapper.style.transform = 'translateX(0)'; // Move to the original position
+              }
+          } else {
+              if (entry.target === avatarForm) {
+                  avatarForm.style.transform = 'translateX(100%)'; // Move outside the viewport
+              }else if (entry.target === Wrapper) {
+                Wrapper.style.transform = 'translateX(-100%)'; // Move to the original position
+              }
+          }
+      });
+  }
+
+  var observer = new IntersectionObserver(handleIntersection);
+
+  observer.observe(avatarForm);
+  observer.observe(Wrapper);
+});
+
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        const navlink = document.querySelector('.navlinks');
+
+        if (window.scrollY > window.innerHeight * 0.2) { // 20vh equivalent in pixels
+            navbar.classList.add('scrolled');
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+            navbar.classList.remove('scrolled');
+
+        }
+    });
+
+
+
+</script>
+</html>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Girl In The Suit
+* source:	https://sketchfab.com/3d-models/the-girl-in-the-suit-b3dbaca0d6314f3a9a012897eba48147
+* author:	BELAZ (https://sketchfab.com/asset_for_games)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Girl In The Suit" (https://sketchfab.com/3d-models/the-girl-in-the-suit-b3dbaca0d6314f3a9a012897eba48147) by BELAZ (https://sketchfab.com/asset_for_games) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

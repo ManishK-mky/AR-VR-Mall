@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+</head>
+<style>
+    :root {
+    --dark-grey: #151922;
+    --med-grey: #ccc;
+    --light-grey: #ddd;
+    --blue-grey: #121b30;
+    --active: #4a4a4a;
+    --not-active: #4a4a4a;
+    --highlight: #0b79c3;
+    --highlight-accent: #fbc730;
+    --link-underline: #ffce06;
+    --status: rgba(255, 0, 0, 1);
+    --search-outline: #4a4a4a;
+    --dark-blue: #131c28;
+    --med-blue: #11386b;
+    --lighter-blue: #1a57a8;
+    --lightest-blue: #0b5cff;
+  }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px;
+    transition: background-color 0.5s ease;
+    backdrop-filter: blur(10px);
+    background-color: #333;
+}
+.transparent {
+    background-color: rgba(51, 51, 51, 0.5);
+}
+.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+.logo img {
+    height: 45px;
+    width: 50px;
+    position: relative;
+    top: 3px;
+    left: 0px;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 0px 20px 0px 0px;
+}
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    transition: 1s;
+}
+.header:hover::before {
+    left: 100%;
+}
+.navbar a {
+    text-decoration: none;
+    transition: .5s;
+    position: relative;
+    font-size: 16px;
+}
+.navbar a:hover {
+    font-size: 20px;
+}
+.navbar a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: 0.5s ease-in-out;
+}
+
+.header.transparent {
+    background-color: transparent;
+}
+.navbar.transparent a {
+    color: #333; /* Change to the desired color for links when navbar is transparent */
+}
+.dark-link {
+    color: white;
+    /* Add any additional styles you want for the anchor tags */
+}
+
+.scrolled-link {
+    color: black; /* Adjust the color for scrolled state */
+    /* Add any additional styles for the anchor tags when scrolled */
+    font-weight: 600;
+}
+
+.herosection{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(59, 59, 59));
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.heading{
+    font-size: 50px;
+    font-weight: 700;
+}
+.createavatarheading,.ourservicesection{
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    color: #FFFFFF;
+}
+.ourservicesection{
+    text-align: center;
+    color: #000 !important;
+}
+.subheading{
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0px 0px 0px 30px;
+}
+.heroheading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+.heading {
+    position: relative;
+    left: -100%; /* Initially move the element to the left side */
+    opacity: 0; /* Initially hide the element */
+    transition: left 1.5s ease-in-out, opacity 1.5s ease-in-out; /* Set the transition properties */
+}
+.subheading {
+    position: relative;
+    left: -100%; /* Initially move the element to the left side */
+    opacity: 0; /* Initially hide the element */
+    transition: left 1.8s ease-in-out, opacity 1.8s ease-in-out; /* Set the transition properties */
+}
+.heading.show, .subheading.show {
+    left: 0; /* Move the element back to its original position */
+    opacity: 1; /* Make the element visible */
+}
+
+
+
+.createavatarsection{
+    padding: 20px 0px;
+    background: url(https://img.freepik.com/free-photo/3d-illustration-blue-purple-futuristic-sci-fi-techno-lights-cool-background_181624-57587.jpg?size=626&ext=jpg&ga=GA1.1.1301768200.1692463469&semt=ais) no-repeat;
+    background-size: cover;
+}
+.createavatarbody{
+    height: 100vh;
+}
+
+.avatarform,.wrapper {
+    position: relative;
+    transform: translateX(-100%); /* Initial position outside the viewport */
+    transition: transform 1.5s ease; /* Transition property, duration, and easing function */
+}
+
+  
+  .createavatarheading,
+  .ourservicesection {
+    position: relative;
+    transform: translateX(-100%); /* Initial position outside the viewport */
+    transition: transform 1.2s ease; /* Transition property, duration, and easing function */
+  }
+
+.servicesection{
+    /* background-image: linear-gradient(to right, rgb(65, 65, 65), rgba(255, 0, 0, 0)); */
+    padding: 30px 0px;
+}
+  .wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: 70vh;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+}
+
+.card {
+    width: 70px;
+    border-radius: .75rem;
+    background-size: cover;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+    transition: 1.2s cubic-bezier(.28,-0.03,0,.99);
+    /* box-shadow: 0px 10px 30px -5px #ffffff; */
+}
+
+.card > .row {
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.card > .row > .icon {
+    background: #FFF;
+    color: #000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    font-weight: 600;
+}
+
+.card > .row > .description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    height: 80px;
+    width: 520px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition-delay: .3s;
+    transition: all .3s ease;
+}
+
+.description p {
+    color: #FFF;
+    padding-top: 5px;
+    font-weight: 500;
+}
+
+.description h4 {
+    text-transform: uppercase;
+    color: #FFF;
+}
+
+.slides {
+    display: none;
+}
+
+.slides:checked + label {
+    width: 700px;
+}
+
+.slides:checked + label .description {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.card[for="c1"] {
+    background-image: url('./vrservices1.jpeg');
+}
+.card[for="c2"] {
+    background-image: url(https://4992313.fs1.hubspotusercontent-na1.net/hubfs/4992313/img-Text-and-IMG-3D%20Store-5@2x.jpg);
+}
+.card[for="c3"] {
+    background-image: url(https://media.istockphoto.com/id/1317706283/photo/customer-experience-inscription-social-networking-concept-business-technology-internet-and.webp?b=1&s=170667a&w=0&k=20&c=psAZJfhmFf0B-gDL39vS1jcxu9pSWw1iLognyPwOtzQ=);
+}
+.card[for="c4"] {
+    background-image: url(https://media.istockphoto.com/id/1263680638/photo/hand-shows-a-hologram-of-a-human-worker.jpg?s=612x612&w=0&k=20&c=ceymEN5tXIWcuDBynrXagi_9hsuhYzQDvMHtq4KGBMs=);
+}
+
+.avatarform label{
+    position: relative;
+    top: -25px;
+    /* left: 5px; */
+}
+
+.avatarform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border: 2px solid #FFF;
+    padding: 60px 0px;
+    max-width: 50vw;
+    margin: 30px auto;
+    border-radius: 15px;
+    background: transparent;
+    color: #FFF;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px #fff;
+}
+.avatarform form div{
+    margin: 15px 0px;
+}
+.avatarform form div input{
+    width: 100%;
+    padding: 6px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #FFF;
+    background: transparent;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFF;
+}
+.avatarform form div input:focus~label{
+    top: -55px;
+}
+.avatarform form div label{
+    transition: .5s;
+    font-weight: 500;
+    font-size: 20px;
+}
+.joinroombtn button,.displayiframebtn{
+    border: none !important;
+    background-color: green;
+    color: #FFF;
+    border-radius: 10px;
+    width: 100%;
+    padding: 7px 0px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+.displayiframebtn{
+    background-color: rgb(114, 59, 180) !important; 
+    width: 300px;  
+}
+
+.iframe-content{
+    display: none;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #fff;
+    margin: 0 auto;
+}
+.avatarcreator{
+    width: 100vw;
+}
+.avatarcreator iframe{
+    width: 50vw;
+    height: 80vh;
+}
+model-viewer{
+    padding: 60px 30px 0px 0px;
+    width:100%;
+    height: 100vh;
+    /* background-color:yellow; */
+    }
+
+.footersection{
+    height: 60vh;
+    width: 100%;
+    background: linear-gradient(135deg,rgb(0, 0, 32) 0%,rgb(7, 23, 51) 100%);
+    padding: 15px 40px;
+}
+
+.fotterfirstrow{
+    display: flex;
+    justify-content: space-between;
+    color: #FFF;
+}
+.logoarea{
+    display: flex;
+    align-items: center;
+}
+.footerlogo img{
+    height: 80px;
+}
+.buyshopname{
+    font-size: 30px;
+    font-weight: 600;
+}
+.footerservices{
+    padding: 25px 0px;
+    font-size: 25px;
+    font-weight: 600;
+}
+.servicespoint{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    padding: 10px 0px;
+}
+.buyshopmoto{
+    word-wrap: break-word;
+    width: 250px;
+    font-size: 16px;
+    padding: 20px 0px 0px 0px;
+}
+.footersecondrow{
+    text-align: center;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 18px;
+}
+</style>
+
+<body>
+
+
+
+    <!-- header section -->
+
+    <header class="header" id="header">
+
+        <div>
+            <div class="logo"><img src="/logo.png" alt="Homie Logo"></div>
+
+        </div>
+
+        <nav class="navbar ">
+            <a href="#" class="dark-link">Home</a>
+            <a href="#" class="dark-link">About Us</a>
+            <a href="#" class="dark-link">Services</a>
+
+            <!-- display only if users are not logged in -->
+            <form action="/signup" method="GET">
+                <button type="submit">Login</button>
+            </form>
+        </nav>
+    </header>
+
+
+    <!-- herosection -->
+
+    <div class="herosection">
+        <div class="heroheading">
+            <div class="heading">Experience The Future</div>
+            <div class="subheading">Step into the metaverse and explore a virtual shopping paradise with cutting-edge VR
+                and AR technology </div>
+        </div>
+
+        <div class="avatarsection">
+            <model-viewer src="scene.gltf" alt="A 3D model of a car" shadow-intensity="1" camera-controls auto-rotate
+                ar>
+            </model-viewer>
+            <div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </div>
+    </div>
+
+
+
+    <!-- create avatar section -->
+
+    <div class="createavatarsection">
+        <div class="createavatarheading" id="avatarHeading">Avatar Selection</div>
+
+        <div class="avatarform" id="avatarform">
+            <h2>Customize your own Avatar</h2>
+            <!-- <form action="">
+                <div class="avatarlabel">
+                    <input type="text" name="avatar" id="avatar" required />
+                    <label for="avatar">Avatar : </label>
+                </div>
+                <div class="usernamelabel">
+                    <input type="text" name="username" id="username" required />
+                    <label for="username">Username : </label>
+                </div>
+
+                <div class="joinroombtn">
+                    <button>Join Room</button>
+                </div>
+
+            </form> -->
+
+            <button id="displayButton" class="displayiframebtn" onClick="displayIframe()">Open Avatar Creator</button>
+
+        </div>
+
+        <!-- This is to use our ready player me avatar api in our website,we are using a
+     demo version of it which is legalized for non commercial use we can partner with them for free for small commercial
+    projects and there are some charges for a large commercial project -->
+
+        <div class="avatarcreator">
+            <iframe id="iframe" class="iframe-content" allow="camera *; microphone *"></iframe>
+        </div>
+
+    </div>
+
+    <!-- services -->
+
+    <div class="servicesection">
+        <div class="ourservicesection" id="servicesHeading">Our Services</div>
+
+        <div class="wrapper" id="wrapper">
+            <div class="container">
+                <input class="slides" type="radio" name="slide" id="c1" checked>
+                <label for="c1" class="card">
+                    <div class="row">
+                        <div class="icon">1</div>
+                        <div class="description">
+                            <h4>VR Services</h4>
+                            <p>Just like in a physical shop, the user will be able to browse virtual shelves, try items
+                                on themselves or their avatar, and purchase them in a couple of clicks.</p>
+                        </div>
+                    </div>
+                </label>
+                <input class="slides" type="radio" name="slide" id="c2">
+                <label for="c2" class="card">
+                    <div class="row">
+                        <div class="icon">2</div>
+                        <div class="description">
+                            <h4>Virtual Store</h4>
+                            <p>Virtual store allows unlimited try-on of clothes with zero expenses on samples.</p>
+                        </div>
+                    </div>
+                </label>
+                <input class="slides" type="radio" name="slide" id="c3">
+                <label for="c3" class="card">
+                    <div class="row">
+                        <div class="icon">3</div>
+                        <div class="description">
+                            <h4>Excellent customer experience</h4>
+                            <p>Our Buyshop is not just a shopping destination; it's an immersive journey tailored for an
+                                excellent customer experience.</p>
+                        </div>
+                    </div>
+                </label>
+                <input class="slides" type="radio" name="slide" id="c4">
+                <label for="c4" class="card">
+                    <div class="row">
+                        <div class="icon">4</div>
+                        <div class="description">
+                            <h4>Avatar Personalization</h4>
+                            <p>Offer personalized recommendations without engaging additional staff.</p>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- footer -->
+
+
+    <div class="footersection">
+        
+        <div class="fotterfirstrow">
+            <div>
+                <div class="logoarea">
+                    <div class="footerlogo"><img src="logo1.png" alt="logo"></div>
+                    <div class="buyshopname">BuyShop</div>
+                </div>
+                <div class="buyshopmoto">
+                    Welcome to the Bushop, an innovative and exciting destination for all your 
+                    shopping and entertainment needs. The Metaverse Mall is a cutting-edge virtual 
+                    experience that offers a truly immersive and interactive environment where you can 
+                    browse, shop, and socialize with others from around the world.
+                </div>
+            </div>
+            <div class="footerservicesection">
+                <div class="footerservices">Services</div>
+                <div class="servicespoint">
+                    <div>VR Services</div>
+                    <div>Virtual Stores</div>
+                    <div>Customer Experience</div>
+                    <div>Avatar Personalization</div>
+                </div>
+            </div>
+            <div>
+                <div class="footerservices">Contact Us</div>
+                <div class="servicespoint">
+                    <div>+91 9087654321</div>
+                    <div>buyshop@hamil.com</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="footerservices">Company</div>
+                <div class="servicespoint">
+                    <div>About Us</div>
+                    <div>Blogs</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footersecondrow">
+            ©2024 All Rights Reserved by BuyShop
+        </div>
+
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+    </script>
+
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var header = document.getElementById('header');
+    var links = document.querySelectorAll('.dark-link');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 0) {
+            header.classList.add('transparent');
+
+            // Add a class to the anchor tags to change their color when scrolled
+            links.forEach(function(link) {
+                link.classList.add('scrolled-link');
+            });
+        } else {
+            header.classList.remove('transparent');
+
+            // Remove the class to revert the color when scrolled to the top
+            links.forEach(function(link) {
+                link.classList.remove('scrolled-link');
+            });
+        }
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Add a class to trigger the transition on page load
+    document.querySelector('.heading').classList.add('show');
+
+    setTimeout(function () {
+        document.querySelector('.subheading').classList.add('show');
+    }, 500);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var avatarHeading = document.getElementById('avatarHeading');
+    var servicesHeading = document.getElementById('servicesHeading');
+  
+    function handleIntersection(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (entry.target === avatarHeading) {
+            avatarHeading.style.transform = 'translateX(0)'; // Move to the original position
+          } else if (entry.target === servicesHeading) {
+            servicesHeading.style.transform = 'translateX(0)'; // Move to the original position
+          }
+        } else {
+          if (entry.target === avatarHeading) {
+            avatarHeading.style.transform = 'translateX(-100%)'; // Move outside the viewport
+          } else if (entry.target === servicesHeading) {
+            servicesHeading.style.transform = 'translateX(100%)'; // Move outside the viewport
+          }
+        }
+      });
+    }
+  
+    var observer = new IntersectionObserver(handleIntersection);
+  
+    observer.observe(avatarHeading);
+    observer.observe(servicesHeading);
+  });
+  
+
+// ready playr me api code
+
+const subdomain = "demo";
+const frame = document.getElementById("iframe");
+
+frame.src = `https://${subdomain}.readyplayer.me/avatar?frameApi`;
+
+window.addEventListener("message", subscribe);
+document.addEventListener("message", subscribe);
+
+function subscribe(event) {
+  const json = parse(event);
+
+  if (json?.source !== "readyplayerme") {
+    return;
+  }
+
+  // Susbribe to all events sent from Ready Player Me once frame is ready
+  if (json.eventName === "v1.frame.ready") {
+    frame.contentWindow.postMessage(
+      JSON.stringify({
+        target: "readyplayerme",
+        type: "subscribe",
+        eventName: "v1.**",
+      }),
+      "*"
+    );
+  }
+
+  // Get avatar GLB URL
+  if (json.eventName === "v1.avatar.exported") {
+    console.log(`Avatar URL: ${json.data.url}`);
+    document.getElementById("avatar").value = `${json.data.url}`;
+    document.getElementById("iframe").hidden = true;
+  }
+
+  // Get user id
+  if (json.eventName === "v1.user.set") {
+    console.log(
+      `User with id ${json.data.id} set: ${JSON.stringify(json)}`
+    );
+  }
+}
+
+function parse(event) {
+  try {
+    return JSON.parse(event.data);
+  } catch (error) {
+    return null;
+  }
+}
+
+
+function displayIframe() {
+  let iframe = document.getElementById('iframe');
+  let button = document.getElementById('displayButton');
+  if (iframe.style.display === 'block') {
+    iframe.style.display = 'none';
+    button.textContent = 'Open Avatar Creator';
+  } else {
+    iframe.style.display = 'block';
+    button.textContent = 'Close Avatar Creator';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var avatarForm = document.getElementById('avatarform');
+  var Wrapper = document.getElementById('wrapper');
+
+  function handleIntersection(entries, observer) {
+      entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+               if (entry.target === avatarForm) {
+                  avatarForm.style.transform = 'translateX(0)'; // Move to the original position
+              }else if (entry.target === Wrapper) {
+                Wrapper.style.transform = 'translateX(0)'; // Move to the original position
+              }
+          } else {
+              if (entry.target === avatarForm) {
+                  avatarForm.style.transform = 'translateX(100%)'; // Move outside the viewport
+              }else if (entry.target === Wrapper) {
+                Wrapper.style.transform = 'translateX(-100%)'; // Move to the original position
+              }
+          }
+      });
+  }
+
+  var observer = new IntersectionObserver(handleIntersection);
+
+  observer.observe(avatarForm);
+  observer.observe(Wrapper);
+});
+
+    </script>
+</body>
+
+</html>

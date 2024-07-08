@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+
+*{
+        margin: 0;
+        font-family: 'Poppins';
+    }
+    body{
+    background-color: #24262b;
+    color: #f1f3f9;
+}
+.navbar {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px;
+    background-color: #f1f3f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 25px;
+    z-index: 1000;
+    border-radius: 40px;
+    transition: all 0.5s ease;
+    box-sizing: border-box;
+}
+
+.navbar.scrolled {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 15px;
+    border-radius: 0;
+}
+
+.logosection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoimg {
+    height: 45px;
+    width: 55px;
+}
+
+.logoname {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 25px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.navlinks {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loginbtn {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.navbar.scrolled .navlinks, .navbar.scrolled .loginbtn {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.navlinks, .loginbtn {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.navlinks::after, .loginbtn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.8s ease;
+    box-sizing: border-box;
+}
+
+.navlinks:hover::after, .loginbtn:hover::after {
+    background-color: #e91e63;
+}
+
+.navlinks::before, .loginbtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #e91e63;
+    transition: width 0.8s ease;
+    box-sizing: border-box;
+}
+
+.navlinks:hover::before, .loginbtn:hover::before {
+    width: 100%;
+}
+
+/* Hamburger styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .navbar-links, .navbar-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #f1f3f9;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-links a, .navbar-right form {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+    .hero-page{
+        flex-direction: column;
+    }
+    .vid,.right-part,.left-part,.info{
+        width: 100%;
+    }
+    .left-part{
+        text-align: center;
+    }
+    .secondavater{
+        display: none;
+    }
+}
+
+.avatarsection model-viewer{
+    height: 600px;
+}
+
+.footer-col{
+   padding: 0 15px;
+   /* text-align: center; */
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:48%;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+.contactsection{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.inpufields{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    line-height: 2;
+    font-size: 22px;
+    color: #e91e63;
+    font-weight: 600;
+}
+.details{
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #f1f3f9 !important;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logosection">
+            <div><img src="/logo.png" alt="logo" class="logoimg"></div>
+            <div class="logoname">BuyShop</div>
+        </div>
+
+        <!-- humberger button -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div class="navbar-links">
+            <a href="/" class="navlinks">Home</a>
+            <a href="about" class="navlinks">About Us</a>
+            <a href="contact" class="navlinks">Contact Us</a>
+        </div>
+        <div class="navbar-right">
+            <form action="/signup" method="GET">
+                <button type="submit" class="loginbtn">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="contactsection">
+        <div class="inpufields">
+            <div>
+                <div>Call Us</div>
+                <div class="details">+916387999999</div>
+            </div>
+            <div>
+                <div>Mail Us</div>
+                <div class="details">help@buyshop.com</div>
+            </div>
+            <div>
+                <div>Visit Us</div>
+                <div class="details">United College of Engineering & Research Prayagraj UP</div>
+            </div>
+            <div class="footer-col">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="avatarsection">
+            <model-viewer src="Airplanes/scene.gltf" alt="A 3D model of a men" shadow-intensity="1" camera-controls auto-rotate>
+            </model-viewer>
+        </div>
+    </div>
+
+
+</body>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+<script>
+    function toggleMenu() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('active');
+}
+
+window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 3) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+</script>
+</html>

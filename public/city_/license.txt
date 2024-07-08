@@ -1,0 +1,11 @@
+Model Information:
+* title:	City Model for Hannover
+* source:	https://sketchfab.com/3d-models/city-model-for-hannover-c9c365fe37ff425fa31dec79bc3b8a67
+* author:	QuintusHortensiusHortalus (https://sketchfab.com/QuintusHortensiusHortalus)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "City Model for Hannover" (https://sketchfab.com/3d-models/city-model-for-hannover-c9c365fe37ff425fa31dec79bc3b8a67) by QuintusHortensiusHortalus (https://sketchfab.com/QuintusHortensiusHortalus) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
