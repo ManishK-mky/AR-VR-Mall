@@ -129,6 +129,10 @@ app.get('/go-to-scene' , async(req,res)=>{
   res.render('scene')
 })
 
+app.get('/avatar' , async(req,res)=>{
+  res.render("loginSuccess")
+})
+
 app.get('/cancel', (req, res) => {
   res.redirect('/');
 });
